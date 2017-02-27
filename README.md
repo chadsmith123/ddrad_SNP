@@ -4,7 +4,7 @@
 This pipeline processes paired-end Illumina reads from a ddRAD library prep and outputs SNPs using samtools mpileup. The steps are:
 
 1. Run quality control of radtags 
-2. Rename generic file names (eg sample*.fq.gz. with a user-provided name in the file "id.txt"
+2. Rename generic file names (eg sample_ACTGC.fq.gz) with a user-provided name in the file "id.txt"
 3. Change the header of fastq sequences to be compliant with BWA
 4. Generate the 04.bwa_ex.sh script to align reads on the TACC cluster 
 5. Filter alignments 
