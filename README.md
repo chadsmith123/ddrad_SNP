@@ -1,7 +1,9 @@
 # ddrad_SNP
 ## Pipeline for Double-Digest Restriction Associated DNA Sequencing
 
-This pipeline processes paired-end Illumina reads from a ddRAD library prep and outputs SNPs using samtools mpileup. The steps are:
+This pipeline processes paired-end Illumina reads from a ddRAD library prep and outputs SNPs using samtools mpileup. 
+
+The steps are:
 
 1. Run quality control of radtags 
 2. Rename generic file names (eg sample_ACTGC.fq.gz) with a user-provided name in the file "id.txt"
@@ -36,3 +38,7 @@ At the end of the pipeline $BASE will have:
 - a dir with the radtags 
 - a dir with the alignments
 - a dir with mpileup output
+
+## References
+Peterson BK, Weber JN, Kay EH, Fisher HS, Hoekstra HE (2012) Double Digest RADseq: An Inexpensive Method for De Novo SNP Discovery and Genotyping in Model and Non-Model Species. PLoS ONE, 7, e37135.
+
