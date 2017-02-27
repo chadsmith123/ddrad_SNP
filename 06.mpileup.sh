@@ -12,7 +12,7 @@
 #
 # BASE		working directory
 # BAM_DIR	dir of bam files to be analyzed
-# OUT_DIR	output directory 
+# MP_DIR	output directory for mpileup 
 # GENOME	Path to genome
 # SAMTOOLS	path to samtools
 # BCFTOOLS	path to bcftools
@@ -23,13 +23,13 @@
 # ./06.mpileup.sh
 
 BASE=/scratch/02716/cs762/atex_popgen
-OUT_DIR=${BASE}/mpileup/q20/
+MP_DIR=${BASE}/mpileup/q20/
 BAM_DIR=${BASE}/bwa/q20/
 GENOME=/work/02716/cs762/genomes/atex_v0.1.fa
 SAMTOOLS=/home1/02716/cs762/.local/bin/samtools
 BCFTOOLS=/home1/02716/cs762/.local/bin/bcftools
 
-if [ ! -d $OUT_DIR ]; then mkdir -p $OUT_DIR;fi
+if [ ! -d $MP_DIR ]; then mkdir -p $MP_DIR;fi
 
 # Collate names of fq files and divides them for the cluster.
 find ${BAM_DIR} -maxdepth 1 -iname "*.bam" > /tmp/06.bam_all.txt
@@ -61,15 +61,15 @@ echo "$nfq samples to process"
 #               -g Genotype and output to BCF
 # $BCFTOOLS -vc -O z output variant sites only, use consensus caller, output=compressed vcf
 echo "$SAMTOOLS mpileup -C 50 -d 500 -t AD,INFO/AD,DP -BI -g -f $GENOME -b 06.bam_1.txt |\
-$BCFTOOLS call -vc -O z -f GQ -o $OUT_DIR/atex_raw1.vcf.gz" >> 06.mpileup_ex.sh
+$BCFTOOLS call -vc -O z -f GQ -o $MP_DIR/atex_raw1.vcf.gz" >> 06.mpileup_ex.sh
 echo "$SAMTOOLS mpileup -C 50 -d 500 -t AD,INFO/AD,DP -BI -g -f $GENOME -b 06.bam_2.txt |\
-$BCFTOOLS call -vc -O z -f GQ -o $OUT_DIR/atex_raw2.vcf.gz" >> 06.mpileup_ex.sh
+$BCFTOOLS call -vc -O z -f GQ -o $MP_DIR/atex_raw2.vcf.gz" >> 06.mpileup_ex.sh
 echo "$SAMTOOLS mpileup -C 50 -d 500 -t AD,INFO/AD,DP -BI -g -f $GENOME -b 06.bam_3.txt |\
-$BCFTOOLS call -vc -O z -f GQ -o $OUT_DIR/atex_raw3.vcf.gz" >> 06.mpileup_ex.sh
+$BCFTOOLS call -vc -O z -f GQ -o $MP_DIR/atex_raw3.vcf.gz" >> 06.mpileup_ex.sh
 echo "$SAMTOOLS mpileup -C 50 -d 500 -t AD,INFO/AD,DP -BI -g -f $GENOME -b 06.bam_4.txt |\
-$BCFTOOLS call -vc -O z -f GQ -o $OUT_DIR/atex_raw4.vcf.gz" >> 06.mpileup_ex.sh
+$BCFTOOLS call -vc -O z -f GQ -o $MP_DIR/atex_raw4.vcf.gz" >> 06.mpileup_ex.sh
 echo "$SAMTOOLS mpileup -C 50 -d 500 -t AD,INFO/AD,DP -BI -g -f $GENOME -b 06.bam_5.txt |\
-$BCFTOOLS call -vc -O z -f GQ -o $OUT_DIR/atex_raw5.vcf.gz" >> 06.mpileup_ex.sh
+$BCFTOOLS call -vc -O z -f GQ -o $MP_DIR/atex_raw5.vcf.gz" >> 06.mpileup_ex.sh
 
 # TACC script for calling SNPs.
 launcher_creator.py -n 06.mpileup -t 06:00:00 -q normal -w 16 -e -j 06.mpileup_ex.sh
