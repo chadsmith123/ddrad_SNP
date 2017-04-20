@@ -10,9 +10,9 @@ The steps are:
 3. Change the header of fastq sequences to be compliant with BWA
 4. Generate the 04.bwa_ex.sh script to align reads on the TACC cluster 
 5. Filter alignments 
-6. Generatea the script 06.mpileup_ex.sh script to call SNPS on the TACC cluster 
+6. Generate the 06.mpileup_ex.sh script to call SNPS on the TACC cluster 
 7. Generate the 07.vcfmerge_ex.sh script to merge vcf files on the TACC cluster 
-8. Filter SNPs for population genomic analysis
+8. Filter SNPs 
 
 ## Dependencies
 - STACKS
